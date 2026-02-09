@@ -1,51 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>💌 A Question</title>
+  <title>💌 Một câu hỏi nhỏ</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Floating hearts container -->
+<!-- Hiệu ứng tim bay -->
 <div class="hearts"></div>
 
-<!-- Background music -->
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- Nhạc nền -->
+<audio id="bg-music" loop></audio>
 
+<!-- SCREEN 1 -->
 <div class="card" id="screen1">
-  <h1>For Jennifer… 💖</h1>
-  <p>Is that you?</p>
-  <button onclick="startExperience(2)">Yes, that’s me</button>
-  <button onclick="goToWrong()">That’s not me</button>
+  <h1>Dành cho Hoàng Ngọc Mii… 💖</h1>
+  <p>Có phải là mình hemmmm?</p>
+  <button onclick="startExperience(2)">Đúng rồi, là mình áaaaaa 😊</button>
+  <button onclick="goToWrong()">Hok phải mình rùi 😝</button>
 </div>
 
+<!-- SCREEN 2 -->
 <div class="card hidden" id="screen2">
   <img src="cat.gif" class="cat" />
-  <h1>Will you be my Valentine? 💕</h1>
-  <p>For a virtual date 💻☕</p>
-  <button onclick="goTo(3)">Yes 💖</button>
-  <button onclick="goTo(5)">Let me think 🙈</button>
+  <h1>Em có muốn làm Valentine của anh sắp tới hemmmmmm? 💕</h1>
+  <p>Cho một buổi hẹn online nho nhỏ 💻☕</p>
+
+  <button onclick="goTo(3)">Có 💖</button>
+  <button id="no-btn">Để em suy nghĩ nhaaaaaa 🙈</button>
+
+  <br /><br />
+  <button onclick="nextMusic()">🎶 Đổi nhạc</button>
 </div>
 
+<!-- SCREEN 3 -->
 <div class="card hidden" id="screen3">
-  <h1>🎉 Yay! It’s a date!</h1>
-  <p>Pick one 💗</p>
-  <button onclick="selectDate('☕ Coffee Chat')">☕ Coffee Chat</button>
-  <button onclick="selectDate('🎬 Movie Night')">🎬 Movie Night</button>
-  <button onclick="selectDate('🎮 Game Night')">🎮 Game Night</button>
+  <h1>🎉 Yay! Vậy là có hẹn gùi nèeee!</h1>
+  <p>Em chọn một nha 💗</p>
+
+  <button onclick="selectDate('🎤 Nghe anh hát')">🎤 Nghe anh hát</button>
+  <button onclick="selectDate('🎬 Xem anh nhảy')">🎬 Xem anh nhảy</button>
+  <button onclick="selectDate('🎮 Tâm sự hoy')">🎮 Tâm sự hoy</button>
 </div>
 
+<!-- SCREEN 4 -->
 <div class="card hidden" id="screen4">
-  <h1>💞 Perfect confirm!</h1>
+  <h1>💞 Quá là tuyệt vời luôn!</h1>
   <p id="date-result"></p>
 </div>
 
+<!-- SCREEN 5 (KHÔNG BAO GIỜ TỚI 😏) -->
 <div class="card hidden" id="screen5">
-  <h1>🙂 Totally okay</h1>
-  <p>No pressure at all — I just wanted to ask 💗</p>
+  <h1>Ò hem seo đâu</h1>
+  <p>Anh vẫn vui vì đã hỏi 💗</p>
 </div>
 
 <script src="script.js"></script>

@@ -1,6 +1,6 @@
 body {
   background: #fff0f5;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@ body {
   border-radius: 18px;
   padding: 30px;
   text-align: center;
-  width: 330px;
+  width: 340px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   z-index: 2;
 }
@@ -42,17 +42,25 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Floating hearts */
+/* Nút KHÔNG chạy trốn */
+#no-btn {
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+/* Hiệu ứng tim bay */
 .hearts::before,
 .hearts::after {
   content: "💖 💕 💗 💓 💞";
   position: absolute;
+  left: 10%;
   animation: float 20s linear infinite;
   font-size: 20px;
   opacity: 0.3;
 }
 
 .hearts::after {
+  left: 60%;
   animation-duration: 30s;
 }
 
