@@ -80,3 +80,60 @@ function toggleMusic() {
     musicPlayer.pause();
   }
 }
+
+
+// ===== CALENDAR INFO =====
+let selectedDateType = "";
+const eventDate = "20260214"; // YYYYMMDD (ví dụ: 14/02/2026)
+const startTime = "190000";   // 19:00
+const endTime = "203000";     // 20:30
+const timeZone = "Ha-Noi";
+
+function selectDate(option) {
+  selectedDateType = option;
+  goTo(4);
+  document.getElementById("date-result").innerText =
+    `Vậy mình hẹn ${option} nha 💖\n14/02 lúc 19:00 nhé 😊`;
+}
+
+// ===== GOOGLE CALENDAR =====
+function addToGoogleCalendar() {
+  const title = encodeURIComponent("💖 Valentine Online Date");
+  const details = encodeURIComponent(
+    `Hẹn hò online cùng Hoàng Ngọc Mi 💕\n${selectedDateType}`
+  );
+
+  const url =
+    `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+    `&text=${title}` +
+    `&details=${details}` +
+    `&dates=${eventDate}T${startTime}/${eventDate}T${endTime}` +
+    `&ctz=${timeZone}`;
+
+  window.open(url, "_blank");
+}
+
+// ===== DOWNLOAD .ICS =====
+function downloadICS() {
+  const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+SUMMARY:💖 Valentine Online Date
+DESCRIPTION:Hẹn hò online cùng Hoàng Ngọc Mi 💕 - ${selectedDateType}
+DTSTART:${eventDate}T${startTime}
+DTEND:${eventDate}T${endTime}
+END:VEVENT
+END:VCALENDAR
+  `.trim();
+
+  const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+  const link = document.createElement("a");
+
+  link.href = URL.createObjectURL(blob);
+  link.download = "valentine-date.ics";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

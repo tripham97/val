@@ -74,3 +74,31 @@ button:hover {
     transform: translateY(-100vh);
   }
 }
+
+.highlight-name {
+  color: #ff4d6d;
+  font-weight: bold;
+  position: relative;
+}
+
+.highlight-name::after {
+  content: " 💕";
+}
+
+.highlight-name {
+  background: linear-gradient(90deg, #ffafcc, #ffc8dd);
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: #b0003a;
+  font-weight: bold;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 6px rgba(255, 77, 109, 0.4);
+  }
+  to {
+    box-shadow: 0 0 14px rgba(255, 77, 109, 0.8);
+  }
+}
