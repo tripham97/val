@@ -1,104 +1,64 @@
+/* A cozy, spooky Halloween night. No external fonts or image dependencies. */
+:root { color-scheme: dark; --ink: #fff2df; --muted: #c9b8d5; --orange: #ffae59; --border: #61406f; }
+* { box-sizing: border-box; }
 body {
-  background: #fff0f5;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 15%, #39204f 0, #160f26 50%, #0b0912 100%);
+  color: var(--ink); font-family: "Trebuchet MS", Arial, sans-serif;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100dvh; margin: 0; padding: 56px 18px 90px; overflow-x: hidden;
 }
-
+.night-sky { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+.night-sky::before { content: "✦  ·        ✧       ·      ✦"; position: absolute; inset: 8% 8%; color: #bda1d3; font-size: 24px; letter-spacing: 3vw; opacity: .55; }
+.night-sky::after { content: ""; position: absolute; inset: auto -20% -110px; height: 260px; border-radius: 50%; background: #21122e; box-shadow: 0 -25px 100px #75428b33; }
+.moon { position: absolute; top: 8%; right: 12%; width: 105px; height: 105px; border-radius: 50%; background: #ffe7b0; box-shadow: 0 0 70px #ffcf8060, inset -18px -9px 0 #e3ba7e; opacity: .8; }
+.bat { position: absolute; font-size: 42px; animation: drift 7s ease-in-out infinite; }
+.bat-one { top: 18%; left: 12%; transform: rotate(-15deg); }
+.bat-two { top: 27%; right: 8%; font-size: 30px; animation-delay: -3s; }
+.ghost { position: absolute; left: 8%; bottom: 22%; font-size: 62px; opacity: .55; animation: drift 6s ease-in-out infinite; }
+.pumpkins { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 38px; z-index: 1; }
+.pumpkins span { font-size: 20px; color: var(--orange); vertical-align: middle; margin: 0 16px; }
 .card {
-  background: white;
-  border-radius: 18px;
-  padding: 30px;
-  text-align: center;
-  width: 340px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  z-index: 2;
+  position: relative; background: linear-gradient(145deg, #291b38f5, #1b1328fa);
+  border: 1px solid var(--border); border-radius: 26px; padding: 34px;
+  text-align: center; width: min(100%, 500px); z-index: 2;
+  box-shadow: 0 24px 80px #0008, 0 0 45px #a565cb12, inset 0 1px 0 #ffffff0c;
 }
-
-.hidden {
-  display: none;
-}
-
+.hidden { display: none !important; }
+h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(26px, 5vw, 34px); line-height: 1.2; margin: 16px 0; color: #ffe2ba; text-wrap: balance; }
+p { color: var(--muted); line-height: 1.65; }
+.eyebrow { color: var(--orange); font-size: 10px; font-weight: bold; letter-spacing: 2.5px; margin: 0 0 16px; }
+.hero-icon { font-size: 68px; filter: drop-shadow(0 0 20px #ff933b33); margin: 18px 0; }
 button {
-  background: #ff6b81;
-  border: none;
-  color: white;
-  padding: 10px 18px;
-  margin: 6px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
+  background: linear-gradient(135deg, #ffb45d, #ef873e); border: 1px solid transparent;
+  color: #28132b; padding: 12px 18px; margin: 6px; border-radius: 12px;
+  cursor: pointer; font: 600 14px/1.4 "Trebuchet MS", Arial, sans-serif;
+  transition: background .2s, border-color .2s, box-shadow .2s;
 }
+button:hover { background: #ffc17e; box-shadow: 0 0 18px #ff9a4330; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #dcb1ff; outline-offset: 4px; }
+a { color: #ffc17e; line-height: 1.6; text-underline-offset: 4px; }
+#email-fallback { display: block; margin: 12px 0; }
+#email-status { font-size: 13px; }
+.cat { width: 120px; margin: 10px 0; border-radius: 20px; }
+#no-btn { position: relative; transition: transform .15s ease-out; will-change: transform; background: #382343; color: #ead8f4; border-color: var(--border); }
+.highlight-name { display: inline-block; background: #422842; padding: 8px 14px; border: 1px solid #a16a5866; border-radius: 10px; color: #ffcc92; font-weight: bold; }
+.highlight-name::after { content: " 🧡"; }
+.date-options { display: grid; gap: 12px; margin-top: 24px; }
+.date-option { display: flex; align-items: center; gap: 14px; width: 100%; margin: 0; padding: 16px; text-align: left; border-radius: 14px; background: #32203f; color: var(--ink); border: 1px solid #654275; }
+.date-option:hover { background: #44284a; border-color: var(--orange); }
+.option-icon { display: grid; place-items: center; width: 46px; height: 48px; border-radius: 12px; background: #ffb45d12; font-size: 28px; flex-shrink: 0; }
+.date-option strong { display: block; font-size: 16px; line-height: 1.4; color: #ffe0b6; }
+.date-option small { display: block; margin-top: 5px; font-size: 13px; font-weight: normal; line-height: 1.5; color: var(--muted); }
+.secondary { background: #382343; color: #ead8f4; border-color: var(--border); }
+.secondary:hover { background: #50305d; }
+.date-schedule { display: grid; gap: 12px; text-align: left; margin: 18px 0; }
+.date-schedule label { font-size: 14px; color: var(--muted); }
+.date-schedule input { display: block; width: 100%; min-width: 0; margin-top: 6px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; font: inherit; background: #140e20; color: var(--ink); }
+#date-result { line-height: 1.6; white-space: pre-line; }
+@keyframes drift { 0%, 100% { translate: 0 0; } 50% { translate: 0 -16px; } }
+@media (max-width: 540px) { body { padding: 28px 14px 85px; } .card { padding: 26px 20px; } .moon { right: -25px; top: 1%; width: 80px; height: 80px; } .ghost { left: -24px; font-size: 42px; } .bat-one { left: 1%; top: 3%; font-size: 26px; } .eyebrow { font-size: 9px; letter-spacing: 1.8px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 
-button:hover {
-  background: #ff4757;
-}
-
-.cat {
-  width: 120px;
-  margin-bottom: 10px;
-}
-
-/* Nút KHÔNG chạy trốn */
-#no-btn {
-  position: relative;
-  transition: transform 0.15s ease-out;
-  will-change: transform;
-}
-
-
-/* Hiệu ứng tim bay */
-.hearts::before,
-.hearts::after {
-  content: "💖 💕 💗 💓 💞";
-  position: absolute;
-  left: 10%;
-  animation: float 20s linear infinite;
-  font-size: 20px;
-  opacity: 0.3;
-}
-
-.hearts::after {
-  left: 60%;
-  animation-duration: 30s;
-}
-
-@keyframes float {
-  from {
-    transform: translateY(100vh);
-  }
-  to {
-    transform: translateY(-100vh);
-  }
-}
-
-.highlight-name {
-  color: #ff4d6d;
-  font-weight: bold;
-  position: relative;
-}
-
-.highlight-name::after {
-  content: " 💕";
-}
-
-.highlight-name {
-  background: linear-gradient(90deg, #ffafcc, #ffc8dd);
-  padding: 4px 10px;
-  border-radius: 12px;
-  color: #b0003a;
-  font-weight: bold;
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    box-shadow: 0 0 6px rgba(255, 77, 109, 0.4);
-  }
-  to {
-    box-shadow: 0 0 14px rgba(255, 77, 109, 0.8);
-  }
-}
+.cuisine-options { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 20px; }
+.cuisine-options .date-option { flex-direction: column; gap: 8px; text-align: center; padding: 14px 8px; }
+.cuisine-options .date-option strong { font-size: 14px; }

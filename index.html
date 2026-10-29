@@ -2,22 +2,31 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>💌 Một câu hỏi nhỏ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎃 Một buổi hẹn Halloween</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Hiệu ứng tim bay -->
-<div class="hearts"></div>
+<!-- Halloween night decorations -->
+<div class="night-sky" aria-hidden="true">
+  <div class="moon"></div>
+  <span class="bat bat-one">🦇</span><span class="bat bat-two">🦇</span>
+  <span class="ghost">👻</span>
+  <div class="pumpkins">🎃 <span>✦</span> 🎃</div>
+</div>
 
 <!-- Nhạc nền -->
 <audio id="bg-music" loop></audio>
 
 <!-- SCREEN 1 -->
 <div class="card" id="screen1">
-  <h1>Dành cho 💖</h1>
-  <span class="highlight-name">Hoàng Ngọc Miii</span>
-  <p>Có phải là emm hemmmm?</p>
+  <!-- <p class="eyebrow">A LITTLE BOO, JUST FOR YOU</p> -->
+  <div class="hero-icon" aria-hidden="true">🎃</div>
+  <h1>Một lời mời Halloween</h1>
+  <p>Dành riêng cho</p>
+  <span class="highlight-name">Lê Trần Ngọc Minh</span>
+  <p>Có phải là cô gái anh muốn rủ đi chơi hemmmm? 👻</p>
   <button onclick="startExperience(2)">Đúng rồi, là mình áaaaaa 😊</button>
   <button onclick="goToWrong()">Hok phải mình rùi 😝</button>
   <button onclick="toggleMusic()">🔊 Bật / Tắt nhạc</button>
@@ -25,11 +34,11 @@
 
 <!-- SCREEN 2 -->
 <div class="card hidden" id="screen2">
-  <img src="cat.gif" class="cat" />
-  <h1>Em có muốn làm Valentine của anh sắp tới hemmmmmm? 💕</h1>
-  <p>Cho một buổi hẹn online nho nhỏ 💻☕</p>
+  <!-- <p class="eyebrow">TRICK, TREAT & A DATE</p> -->
+  <img src="cat.gif" class="cat" alt="Mèo dễ thương gửi lời mời hẹn hò" />
+  <h1>Halloween này, đi hẹn hò với anh hemmmmm? 🎃</h1>
 
-  <button onclick="goTo(3)">Có 💖</button>
+  <button onclick="goTo(3)">Có, đi với anh 🧡</button>
   <button id="no-btn">Để em suy nghĩ nhaaaaaa 🙈</button>
 
   <br /><br />
@@ -38,22 +47,68 @@
 
 <!-- SCREEN 3 -->
 <div class="card hidden" id="screen3">
-  <h1>🎉 Yay! Vậy là có hẹn gùi nèeee!</h1>
-  <p>Em chọn một nha 💗</p>
+  <!-- <p class="eyebrow">PICK YOUR HALLOWEEN ADVENTURE</p> -->
+  <h1>Chốt kèo Halloween gùiiiiiii! 👻</h1>
+  <p>Bước 1/2: Em chọn hoạt động nha. Tiếp theo mình chọn món ăn cho bữa tối 🧡</p>
+  <div class="date-options">
+    <button class="date-option" onclick="selectDate('music')">
+      <span class="option-icon" aria-hidden="true">🎻</span>
+      <span><strong>Nghe nhạc live</strong><small>Cùng nghe hòa nhạc hoặc một buổi diễn live</small></span>
+    </button>
+    <button class="date-option" onclick="selectDate('golf')">
+      <span class="option-icon" aria-hidden="true">⛳</span>
+      <span><strong>Mini golf</strong><small>Ví dụ: Puttery, Puttshack hoặc PopStroke</small></span>
+    </button>
+    <button class="date-option" onclick="selectDate('arcade')">
+      <span class="option-icon" aria-hidden="true">🎮</span>
+      <span><strong>Arcade</strong><small>Ví dụ: Cidercade hoặc Flight Club</small></span>
+    </button>
+    <button class="date-option" onclick="selectDate('cinema')">
+      <span class="option-icon" aria-hidden="true">🎬</span>
+      <span><strong>Xem phim</strong><small>Ở rạp hoặc ngoài trời, như Rooftop Cinema Club Uptown</small></span>
+    </button>
+    <button class="date-option" onclick="selectDate('bowling')">
+      <span class="option-icon" aria-hidden="true">🎳</span>
+      <span><strong>Bowling</strong></span>
+    </button>
+  </div>
+</div>
 
-  <button onclick="selectDate('🎤 Nghe anh hát')">🎤 Nghe anh hát</button>
-  <button onclick="selectDate('🎬 Xem anh nhảy')">🎬 Xem anh nhảy</button>
-  <button onclick="selectDate('🎮 Tâm sự hoy')">🎮 Tâm sự hoy</button>
+<!-- DINNER CUISINE -->
+<div class="card hidden" id="screen6">
+  <h1>Bữa tối mình ăn gì nèeeee? 🍽️</h1>
+  <p>Bước 2/2: Em chọn món mình thích, rồi mình tìm quán cùng nhau nha 🧡</p>
+  <div class="date-options cuisine-options">
+    <button class="date-option" onclick="selectCuisine('vietnamese')"><span class="option-icon" aria-hidden="true">🍜</span><span><strong>Món Việt</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('japanese')"><span class="option-icon" aria-hidden="true">🍣</span><span><strong>Món Nhật</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('korean')"><span class="option-icon" aria-hidden="true">🥢</span><span><strong>Món Hàn</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('thai')"><span class="option-icon" aria-hidden="true">🍛</span><span><strong>Món Thái</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('chinese')"><span class="option-icon" aria-hidden="true">🥟</span><span><strong>Món Hoa</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('italian')"><span class="option-icon" aria-hidden="true">🍝</span><span><strong>Món Ý</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('mexican')"><span class="option-icon" aria-hidden="true">🌮</span><span><strong>Món Mexico</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('american')"><span class="option-icon" aria-hidden="true">🍔</span><span><strong>Món Mỹ</strong></span></button>
+    <button class="date-option" onclick="selectCuisine('surprise')"><span class="option-icon" aria-hidden="true">✨</span><span><strong>Anh chọn cho em</strong></span></button>
+  </div>
+  <button class="secondary" onclick="goTo(3)">← Chọn lại hoạt động</button>
 </div>
 
 <!-- SCREEN 4 -->
 <div class="card hidden" id="screen4">
-  <h1>💞 Quá là tuyệt vời luôn!</h1>
+  <p class="eyebrow">IT’S A BOO-TIFUL DATE</p>
+  <h1>Hẹn em đêm Halloween 🎃</h1>
   <p id="date-result"></p>
+  <p id="email-status" role="status" aria-live="polite"></p>
+  <a id="email-fallback" class="hidden" href="#">💌 Mở email để gửi lựa chọn (em bấm Gửi nha)</a>
+  <button id="email-retry" class="hidden" onclick="notifyDateSelection()">💌 Gửi lại lựa chọn cho anh</button>
 
-  <br />
+  <button class="secondary" onclick="goTo(3)">← Chọn lại hoạt động</button>
+  <button class="secondary" onclick="goTo(6)">🍽️ Chọn lại món ăn</button>
+  <p>Chọn ngày giờ cho buổi hẹn ma mị của mình nha 🕯️</p>
+  <div class="date-schedule">
+    <label>Ngày hẹn <input id="event-date" type="date" required /></label>
+    <label>Giờ hẹn (Houston) <input id="event-time" type="time" value="19:00" required /></label>
+  </div>
   <button onclick="addToGoogleCalendar()">📅 Thêm vào Google Calendar</button>
-  <button onclick="downloadICS()">⬇️ Tải lịch về máy</button>
 </div>
 
 
@@ -63,6 +118,7 @@
   <p>Anh vẫn vui vì đã hỏi 💗</p>
 </div>
 
+<script src="notification-config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
