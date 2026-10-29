@@ -32,3 +32,15 @@ link after a failure. This fallback requires a configured email app and the visi
 must press Send; it does not provide automatic delivery. Opening index.html as a
 file also shows this fallback. Serve the folder over HTTP(S) for automatic sending.
 A different automatic provider requires its own configured endpoint/account.
+
+## Switch to Formspree
+
+Create a form at https://formspree.io with minhtri2805@gmail.com as its recipient
+and complete any email verification requested by the provider. Copy the public
+Integration endpoint (`https://formspree.io/f/...`) into
+`window.DATE_NOTIFICATION_ENDPOINT` in notification-config.js. This switches
+requests to Formspree. No private API keys belong in the site.
+
+Until an endpoint is configured, the site still uses FormSubmit and automatic
+sending will fail while that provider is unavailable. The fallback opens a draft;
+the visitor must press Send in their mail app.

@@ -4,3 +4,6 @@ window.DATE_NOTIFICATION_RECIPIENT = "minhtri2805@gmail.com";
 
 // Address used by the manual email fallback, even when the endpoint uses a token.
 window.DATE_NOTIFICATION_EMAIL = "minhtri2805@gmail.com";
+
+// Paste the public Formspree form endpoint here to replace FormSubmit.
+window.DATE_NOTIFICATION_ENDPOINT = "https://formspree.io/f/xyeepkej";

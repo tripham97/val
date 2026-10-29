@@ -207,7 +207,9 @@ async function notifyDateSelection() {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15000);
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`, {
+    const endpoint = window.DATE_NOTIFICATION_ENDPOINT || `https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`;
+    const isFormspree = new URL(endpoint).hostname === "formspree.io";
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       signal: controller.signal,
@@ -220,16 +222,17 @@ async function notifyDateSelection() {
         _url: window.location.href
       })
     });
+    if (!response.ok) throw new Error(`Email provider returned HTTP ${response.status}`);
     const result = await response.json();
-    if (!response.ok || !(result.success === true || result.success === "true")) {
-      throw new Error("Notification was not accepted");
-    }
+    const accepted = isFormspree ? result.ok === true : (result.success === true || result.success === "true");
+    if (!accepted) throw new Error(result.message || "Notification was not accepted");
     if (request !== notificationRequest) return;
     lastNotifiedSelection = selection;
     status.textContent = "Đã gửi lựa chọn của em cho anh 💌";
   } catch (error) {
     if (request !== notificationRequest) return;
-    status.textContent = "Chưa gửi được lựa chọn. Em thử gửi lại nha 💕";
+    console.error("Date notification failed:", error);
+    status.textContent = "Chưa gửi được email tự động. Em mở email bên dưới rồi bấm Gửi nha 💌";
     retry.classList.remove("hidden");
     fallback.classList.remove("hidden");
   } finally {
